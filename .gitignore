@@ -1,0 +1,76 @@
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+*~
+*.swp
+*.swo
+
+# Presentation software temporary files
+~$*.pptx
+~$*.docx
+*.pptx#
+*.tmp
+
+# LaTeX temporary files
+*.aux
+*.log
+*.toc
+*.out
+*.nav
+*.snm
+*.vrb
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+*.egg-info/
+
+# MATLAB
+*.asv
+*.m~
+
+# R
+.Rhistory
+.RData
+.Ruserdata
+
+# Node.js
+node_modules/
+npm-debug.log
+
+# IDE files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Large media files (consider using Git LFS)
+*.wav
+*.aif
+*.aiff
+*.flac
+*.mov
+*.mp4
+*.avi
+
+# Backup files
+*.bak
+*.backup
