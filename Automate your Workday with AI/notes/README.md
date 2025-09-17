@@ -16,7 +16,6 @@ Leverage AI to automate mundane tasks and free up time for what truly matters. T
 - **Copilot in Teams**: Meeting summaries, action items, and collaboration enhancement
 - **Copilot in Outlook**: Email drafting, scheduling, and inbox management
 - **Copilot in Word/PowerPoint/Excel**: Content creation, data analysis, and presentation building
-- **Security Copilot**: Threat detection and cybersecurity automation
 
 ### Demo Ideas
 - **Live Email Automation**: Show Copilot composing professional emails, scheduling meetings, and organizing inbox with smart rules
