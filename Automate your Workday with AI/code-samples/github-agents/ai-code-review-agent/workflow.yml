@@ -1,0 +1,149 @@
+name: AI Code Review Agent
+
+on:
+  pull_request:
+    types: [opened, synchronize, ready_for_review]
+  pull_request_review:
+    types: [submitted]
+
+env:
+  OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+  REDIS_URL: ${{ secrets.REDIS_URL }}
+
+jobs:
+  pre-analysis:
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.draft == false
+    outputs:
+      changed_files: ${{ steps.analysis.outputs.changed_files }}
+      has_tests: ${{ steps.analysis.outputs.has_tests }}
+      security_files: ${{ steps.analysis.outputs.security_files }}
+      review_mode: ${{ steps.analysis.outputs.review_mode }}
+      priority: ${{ steps.analysis.outputs.priority }}
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0  # Full history for better context
+    
+    - name: Analyze PR Complexity
+      id: analysis
+      run: |
+        # Quick analysis to determine review approach
+        CHANGED_FILES=$(git diff --name-only origin/main | wc -l)
+        HAS_TESTS=$(git diff --name-only origin/main | grep -E '(test|spec)' | wc -l)
+        SECURITY_FILES=$(git diff --name-only origin/main | grep -E '(auth|security|crypto|payment)' | wc -l)
+        
+        echo "changed_files=$CHANGED_FILES" >> $GITHUB_OUTPUT
+        echo "has_tests=$HAS_TESTS" >> $GITHUB_OUTPUT
+        echo "security_files=$SECURITY_FILES" >> $GITHUB_OUTPUT
+        
+        # Determine review mode
+        if [ $CHANGED_FILES -le 5 ]; then
+          echo "review_mode=express" >> $GITHUB_OUTPUT
+          echo "priority=low" >> $GITHUB_OUTPUT
+        elif [ $CHANGED_FILES -le 20 ]; then
+          echo "review_mode=standard" >> $GITHUB_OUTPUT
+          echo "priority=normal" >> $GITHUB_OUTPUT
+        else
+          echo "review_mode=deep" >> $GITHUB_OUTPUT
+          echo "priority=high" >> $GITHUB_OUTPUT
+        fi
+        
+        # Override for security files
+        if [ $SECURITY_FILES -gt 0 ]; then
+          echo "review_mode=deep" >> $GITHUB_OUTPUT
+          echo "priority=high" >> $GITHUB_OUTPUT
+        fi
+
+  ai-code-review:
+    needs: pre-analysis
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - mode: ${{ needs.pre-analysis.outputs.review_mode }}
+            priority: ${{ needs.pre-analysis.outputs.priority }}
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+        cache: 'pip'
+    
+    - name: Install dependencies
+      run: |
+        pip install -r requirements.txt
+      working-directory: .github/actions/ai-code-review
+    
+    - name: Setup Redis Cache
+      uses: supercharge/redis-github-action@1.7.0
+      with:
+        redis-version: 7
+    
+    - name: AI Code Review - Express Mode
+      if: matrix.mode == 'express'
+      uses: ./.github/actions/ai-code-review
+      with:
+        mode: "express"
+        focus: "critical-issues-only"
+        timeout: "60s"
+        parallel_analysis: "false"
+        
+    - name: AI Code Review - Standard Mode
+      if: matrix.mode == 'standard'
+      uses: ./.github/actions/ai-code-review
+      with:
+        mode: "standard"
+        focus: "comprehensive"
+        timeout: "180s"
+        parallel_analysis: "true"
+        
+    - name: AI Code Review - Deep Analysis
+      if: matrix.mode == 'deep'
+      uses: ./.github/actions/ai-code-review
+      with:
+        mode: "deep"
+        focus: "security-and-performance"
+        timeout: "300s"
+        parallel_analysis: "true"
+        enable_caching: "true"
+        
+    - name: Generate Review Summary
+      uses: ./.github/actions/create-review-summary
+      with:
+        include_metrics: true
+        auto_approve: ${{ needs.pre-analysis.outputs.changed_files <= 3 }}
+        priority: ${{ matrix.priority }}
+
+  cost-tracking:
+    needs: [pre-analysis, ai-code-review]
+    runs-on: ubuntu-latest
+    if: always()
+    
+    steps:
+    - name: Track AI Usage Costs
+      uses: ./.github/actions/track-ai-costs
+      with:
+        mode: ${{ needs.pre-analysis.outputs.review_mode }}
+        files_analyzed: ${{ needs.pre-analysis.outputs.changed_files }}
+        
+  performance-monitoring:
+    needs: [pre-analysis, ai-code-review]
+    runs-on: ubuntu-latest
+    if: always()
+    
+    steps:
+    - name: Monitor Performance Metrics
+      uses: ./.github/actions/monitor-performance
+      with:
+        review_mode: ${{ needs.pre-analysis.outputs.review_mode }}
+        total_files: ${{ needs.pre-analysis.outputs.changed_files }}
+        success: ${{ needs.ai-code-review.result == 'success' }}
