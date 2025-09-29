@@ -1,0 +1,94 @@
+{
+  "rules": {
+    "auto_approve_conditions": [
+      {
+        "condition": "files_changed <= 3 AND only_documentation_changes",
+        "action": "auto_approve",
+        "comment": "Documentation-only changes automatically approved"
+      },
+      {
+        "condition": "tests_added AND coverage_increase > 0",
+        "action": "expedite_review",
+        "comment": "Tests added - expediting review process"
+      },
+      {
+        "condition": "only_config_changes AND no_logic_changes",
+        "action": "auto_approve",
+        "comment": "Configuration-only changes approved"
+      }
+    ],
+    "blocking_conditions": [
+      {
+        "condition": "security_vulnerability_detected",
+        "action": "block_merge",
+        "comment": "Security vulnerabilities must be addressed before merge"
+      },
+      {
+        "condition": "test_coverage_decrease > 5",
+        "action": "request_changes",
+        "comment": "Test coverage decreased by more than 5%"
+      },
+      {
+        "condition": "breaking_api_changes",
+        "action": "require_review",
+        "comment": "Breaking API changes require manual review"
+      }
+    ],
+    "custom_checks": [
+      {
+        "name": "database_migration_check",
+        "pattern": "*.sql OR *migration*",
+        "prompt": "Review this database migration for potential data loss and performance impact"
+      },
+      {
+        "name": "api_breaking_change_check",
+        "pattern": "*/api/* OR */controllers/*",
+        "prompt": "Check for breaking API changes and ensure backward compatibility"
+      },
+      {
+        "name": "security_sensitive_check",
+        "pattern": "*/auth/* OR */security/* OR */payment/*",
+        "prompt": "security_focused"
+      },
+      {
+        "name": "performance_critical_check",
+        "pattern": "*/services/* OR */repositories/* OR */queries/*",
+        "prompt": "performance_focused"
+      }
+    ],
+    "priority_rules": [
+      {
+        "condition": "security_files_changed",
+        "priority": "high",
+        "timeout_multiplier": 2
+      },
+      {
+        "condition": "large_pr",
+        "priority": "normal",
+        "split_analysis": true
+      },
+      {
+        "condition": "documentation_only",
+        "priority": "low",
+        "fast_track": true
+      }
+    ],
+    "reviewer_assignment": [
+      {
+        "condition": "frontend_changes",
+        "assign_team": "frontend-team",
+        "require_approval": false
+      },
+      {
+        "condition": "backend_changes",
+        "assign_team": "backend-team", 
+        "require_approval": false
+      },
+      {
+        "condition": "security_changes",
+        "assign_team": "security-team",
+        "require_approval": true
+      }
+    ]
+  }
+}

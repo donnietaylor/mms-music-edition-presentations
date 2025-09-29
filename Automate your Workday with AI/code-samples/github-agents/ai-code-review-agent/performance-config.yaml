@@ -1,0 +1,79 @@
+performance_optimizations:
+  parallel_analysis: true
+  max_concurrent_reviews: 5
+  
+  caching:
+    enabled: true
+    cache_duration: "24h"
+    cache_key_patterns:
+      - "file-analysis-{file_hash}"
+      - "dependency-check-{package_json_hash}"
+      - "test-coverage-{commit_hash}"
+    redis_url: "${REDIS_URL}"
+  
+  batching:
+    enabled: true
+    batch_size: 10
+    batch_timeout: "30s"
+    max_batch_wait: "60s"
+    
+  quick_checks:
+    # Fast pre-filters to avoid expensive analysis
+    - name: "skip_generated_files"
+      pattern: "*.generated.* OR */dist/* OR */build/* OR */node_modules/*"
+      action: "skip"
+    
+    - name: "skip_large_files"
+      condition: "file_size > 100KB"
+      action: "skip"
+      comment: "File too large for AI analysis"
+    
+    - name: "prioritize_critical_files"
+      pattern: "*/src/security/* OR */auth/* OR */payment/* OR */api/*"
+      action: "priority_review"
+    
+    - name: "fast_track_docs"
+      pattern: "*.md OR *.txt OR */docs/*"
+      action: "fast_track"
+      
+    - name: "skip_binary_files"
+      pattern: "*.png OR *.jpg OR *.gif OR *.pdf OR *.zip"
+      action: "skip"
+  
+  ai_model_optimization:
+    primary_model: "gpt-4-turbo"    # Faster than gpt-4, still high quality
+    fallback_model: "gpt-3.5-turbo" # For simple reviews
+    max_tokens: 2000                # Limit response length for speed
+    temperature: 0.1                # Lower temperature for consistent results
+    timeout: "45s"                  # Prevent long-running requests
+    
+    # Model selection logic
+    model_selection:
+      simple_changes: "gpt-3.5-turbo"
+      complex_changes: "gpt-4-turbo"
+      security_review: "gpt-4"
+      
+  retry_logic:
+    max_retries: 3
+    backoff_multiplier: 2
+    initial_delay: "1s"
+    
+  rate_limiting:
+    requests_per_minute: 60
+    burst_allowance: 10
+    
+  monitoring:
+    track_performance: true
+    log_slow_requests: true
+    slow_request_threshold: "30s"
+    enable_metrics: true
+    
+  memory_optimization:
+    max_file_size_in_memory: "1MB"
+    chunk_large_files: true
+    chunk_size: "50KB"
+    
+  network_optimization:
+    connection_pool_size: 10
+    request_timeout: "30s"
+    keep_alive: true
