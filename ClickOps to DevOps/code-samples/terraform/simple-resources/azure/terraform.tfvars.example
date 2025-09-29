@@ -1,0 +1,26 @@
+# Example Terraform Variables File
+# Copy this file to terraform.tfvars and customize the values
+# terraform.tfvars is automatically loaded by Terraform and ignored by git
+
+# Name of the resource group (will have random suffix added)
+resource_group_name = "rg-clickops-to-devops"
+
+# Azure region for deployment
+# Popular options: "East US", "West US 2", "Central US", "West Europe"
+location = "East US"
+
+# Environment tag for resources
+# Options: "dev", "staging", "prod", "demo"
+environment = "demo"
+
+# Example of different environments:
+
+# Development Environment
+# resource_group_name = "rg-devops-dev"
+# location = "East US"
+# environment = "dev"
+
+# Production Environment
+# resource_group_name = "rg-devops-prod"
+# location = "West US 2"
+# environment = "prod"
