@@ -10,6 +10,13 @@ Comprehensive examples showing how to customize GitHub Agents for speed and enha
 - **Intelligent Issue Triage**: Smart classification, prioritization, and routing
 - **Multi-Agent Workflows**: Coordinated agent systems for complex automation
 
+### ⚡ [Sample Customizations](./sample-customizations/)
+Practical customization examples following [GitHub Copilot best practices](https://docs.github.com/en/enterprise-cloud@latest/copilot/tutorials/coding-agent/get-the-best-results):
+- **Custom Prompts**: Domain-specific prompts for business, code review, and documentation
+- **Workflow Automation**: Complete CI/CD and issue management automation examples
+- **Performance Optimization**: Caching, parallel processing, and selective execution techniques
+- **Integration Patterns**: Connecting agents with APIs, databases, webhooks, and third-party services
+
 ### 📁 Additional Examples
 - Code examples demonstrating AI automation techniques
 - Sample scripts and workflows
