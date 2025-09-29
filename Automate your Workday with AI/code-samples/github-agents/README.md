@@ -39,6 +39,19 @@ Coordinated agent system demonstrating:
 - Parallel processing optimization
 - Error handling and recovery
 
+## GitHub Copilot Custom Instructions
+
+This directory includes example custom instruction files to guide GitHub Copilot when working with AI agent code:
+
+- **[General Copilot Instructions](./copilot-instructions.md)** - Base coding standards and patterns for all agents
+- **[AI Code Review Agent Instructions](./ai-code-review-agent/copilot-instructions.md)** - Specific guidance for code review automation
+- **[AI Documentation Agent Instructions](./ai-documentation-agent/copilot-instructions.md)** - Documentation generation patterns and templates
+- **[Issue Triage Agent Instructions](./intelligent-issue-triage/copilot-instructions.md)** - Issue classification and routing logic
+- **[Smart Deployment Agent Instructions](./smart-deployment-agent/copilot-instructions.md)** - Deployment decision-making frameworks
+- **[Multi-Agent Workflow Instructions](./multi-agent-workflow/copilot-instructions.md)** - Agent coordination and communication patterns
+
+These instruction files help GitHub Copilot understand the specific context, patterns, and requirements for each type of AI agent, resulting in more accurate and relevant code suggestions.
+
 ## Key Customization Techniques
 
 1. **Custom Prompts**: Tailored instructions for specific domains and use cases

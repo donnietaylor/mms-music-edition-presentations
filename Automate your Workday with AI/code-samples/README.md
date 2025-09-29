@@ -9,6 +9,7 @@ Comprehensive examples showing how to customize GitHub Agents for speed and enha
 - **AI Code Review Agent**: Intelligent code analysis with parallel processing and caching
 - **Intelligent Issue Triage**: Smart classification, prioritization, and routing
 - **Multi-Agent Workflows**: Coordinated agent systems for complex automation
+- **Custom Copilot Instructions**: Example .md files showing how to guide GitHub Copilot for better AI agent code generation
 
 ### 📁 Additional Examples
 - Code examples demonstrating AI automation techniques
