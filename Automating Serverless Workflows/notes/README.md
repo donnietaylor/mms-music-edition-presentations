@@ -2,6 +2,17 @@
 
 This folder contains comprehensive notes and documentation for the "Automating Serverless Workflows" session - exploring event-driven, scalable, and cost-effective workflows using Azure serverless technologies.
 
+## 🎯 Main Demo Repository
+
+**[mms-basic-functions-and-containers](https://github.com/donnietaylor/mms-basic-functions-and-containers)** - Complete working demos with code, infrastructure, and CI/CD
+
+This repository provides hands-on examples for all concepts discussed in this session, including:
+- Azure Functions with PowerShell
+- Azure Container Apps deployment
+- Terraform infrastructure patterns
+- GitHub Actions CI/CD pipelines
+- Service integration examples
+
 ## Session Synopsis
 Discover how to automate complex workflows using serverless architecture by leveraging Azure Logic Apps, Azure Functions, and Azure Container Apps. Gain insights into designing event-driven, scalable, and cost-effective workflows that seamlessly integrate with various Azure services while managing containerized workloads without the infrastructure overhead.
 
@@ -21,8 +32,10 @@ Discover how to automate complex workflows using serverless architecture by leve
 
 ### Demo Ideas
 - **HTTP Trigger Function**: Build a simple REST API that processes data and returns JSON responses
+  - 💡 **[See Demo 1](https://github.com/donnietaylor/mms-basic-functions-and-containers/tree/main/functions/demo1-simple)** - Complete working example
 - **Timer-Based Automation**: Create a scheduled function that performs daily data cleanup or report generation
 - **Event-Driven Processing**: Demonstrate blob storage trigger that automatically processes uploaded files
+  - 💡 **[See Demo 2](https://github.com/donnietaylor/mms-basic-functions-and-containers/tree/main/functions/demo2-storage)** - Storage integration example
 - **Service Integration**: Show function connecting to Cosmos DB, Service Bus, and external APIs
 - **Local Development Workflow**: Live coding session using Azure Functions Core Tools and VS Code
 
@@ -63,9 +76,12 @@ Discover how to automate complex workflows using serverless architecture by leve
 
 ### Demo Ideas
 - **Microservices Deployment**: Deploy multi-container application with API gateway and database services
+  - 💡 **[See Demo 3](https://github.com/donnietaylor/mms-basic-functions-and-containers/tree/main/containers/demo3-simple)** - PowerShell container API
 - **Event-Driven Scaling**: Show container apps scaling based on Service Bus queue depth or HTTP load
 - **CI/CD Pipeline**: Demonstrate automated deployment from GitHub Actions to Container Apps
+  - 💡 **[View GitHub Actions workflows](https://github.com/donnietaylor/mms-basic-functions-and-containers/tree/main/.github/workflows)** - Complete CI/CD examples
 - **Cross-Service Communication**: Build workflow where containers communicate via HTTP and message queues
+  - 💡 **[See Demo 4](https://github.com/donnietaylor/mms-basic-functions-and-containers/tree/main/terraform/demo4)** - Integrated solution
 - **Traffic Splitting**: Live demo of canary deployment with traffic percentage routing
 
 ---
@@ -84,6 +100,7 @@ Discover how to automate complex workflows using serverless architecture by leve
 
 ### Demo Ideas
 - **End-to-End Workflow**: Build complete business process spanning Functions, Logic Apps, and Container Apps
+  - 💡 **[See Demo 4 Integration](https://github.com/donnietaylor/mms-basic-functions-and-containers/tree/main/terraform/demo4)** - Complete microservices solution
 - **Event-Driven Pipeline**: Create data processing pipeline triggered by file uploads, processed by functions, orchestrated by Logic Apps
 - **Hybrid Integration**: Demonstrate on-premises to cloud workflow using various Azure serverless services
 - **Multi-Service Orchestration**: Show complex workflow involving multiple Azure services with error handling and retry logic
@@ -119,12 +136,16 @@ Discover how to automate complex workflows using serverless architecture by leve
 1. **Identify automation candidates**: Map 3-5 business processes suitable for serverless automation
 2. **Set up development environment**: Install Azure CLI, Functions Core Tools, and VS Code extensions
 3. **Create first Azure Function**: Build simple HTTP trigger function for immediate hands-on experience
+   - 💡 **Start here**: [Demo 1 - Simple HTTP Trigger](https://github.com/donnietaylor/mms-basic-functions-and-containers/tree/main/functions/demo1-simple)
 4. **Explore Logic Apps designer**: Create basic workflow using pre-built connectors
+5. **Clone the demo repository**: `git clone https://github.com/donnietaylor/mms-basic-functions-and-containers.git`
 
 ### 30-Day Goals
 1. **Deploy production workflow**: Implement at least one end-to-end serverless automation solution
+   - 💡 **Reference**: [Complete Integrated Solution](https://github.com/donnietaylor/mms-basic-functions-and-containers/tree/main/terraform/demo4)
 2. **Establish monitoring**: Set up Application Insights and alerting for serverless components
 3. **Build CI/CD pipeline**: Automate deployment process using Azure DevOps or GitHub Actions
+   - 💡 **Examples**: [GitHub Actions Workflows](https://github.com/donnietaylor/mms-basic-functions-and-containers/tree/main/.github/workflows)
 4. **Document architecture**: Create documentation for implemented workflows and integration patterns
 
 ### Long-term Vision
@@ -132,6 +153,27 @@ Discover how to automate complex workflows using serverless architecture by leve
 2. **Implement advanced patterns**: Use Durable Functions, event sourcing, and CQRS where appropriate
 3. **Optimize costs**: Implement resource tagging, monitoring, and optimization strategies
 4. **Build expertise**: Become organization champion for serverless best practices and governance
+
+---
+
+## 📚 Additional Resources
+
+### Hands-On Learning
+- **[Main Demo Repository](https://github.com/donnietaylor/mms-basic-functions-and-containers)** - Complete working examples
+- **[Microsoft Learn - Azure Functions](https://docs.microsoft.com/en-us/learn/paths/create-serverless-applications/)** - Interactive learning paths
+- **[Microsoft Learn - Container Apps](https://docs.microsoft.com/en-us/learn/paths/deploy-container-apps/)** - Hands-on modules
+
+### Quick Reference
+- **[Azure Functions PowerShell Reference](https://docs.microsoft.com/en-us/azure/azure-functions/functions-reference-powershell)** - Language-specific documentation
+- **[Terraform Azure Provider Docs](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs)** - IaC reference
+- **[GitHub Actions for Azure](https://github.com/Azure/actions)** - CI/CD actions library
+
+### Progressive Demo Series
+Follow the demos in order for best learning experience:
+1. 🟢 **[Demo 1: Simple HTTP Function](https://github.com/donnietaylor/mms-basic-functions-and-containers/tree/main/functions/demo1-simple)** - Start here
+2. 🟡 **[Demo 2: Storage Integration](https://github.com/donnietaylor/mms-basic-functions-and-containers/tree/main/functions/demo2-storage)** - Add persistence
+3. 🟠 **[Demo 3: Container Apps](https://github.com/donnietaylor/mms-basic-functions-and-containers/tree/main/containers/demo3-simple)** - Containerization
+4. 🔴 **[Demo 4: Integrated Solution](https://github.com/donnietaylor/mms-basic-functions-and-containers/tree/main/terraform/demo4)** - Full microservices
 
 ---
 
