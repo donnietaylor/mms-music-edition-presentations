@@ -2,6 +2,20 @@
 
 Notes and presentations for MMS Music 2025 Conference by Donnie Taylor.
 
+## About MMS Conferences
+
+**Midwest Management Summit (MMS)** is a premier community-driven conference focused on Microsoft technologies, cloud platforms, and IT management.
+
+### Official Websites
+- **Main Website**: [https://mmsmoa.com/](https://mmsmoa.com/)
+- **MMS 2025 Music City Edition**: [https://mms2025music.sched.com/](https://mms2025music.sched.com/)
+
+### Upcoming MMS Conferences
+- **MMS Music City Edition 2025** - Nashville, TN - May 5-9, 2025
+- **MMS MOA 2025** - Minneapolis, MN - September 8-12, 2025
+
+For the latest conference information, dates, and registration details, visit [mmsmoa.com](https://mmsmoa.com/).
+
 ## Conference Sessions
 
 This repository contains organized materials for all sessions presented at the MMS 2025 Music City Edition conference.
