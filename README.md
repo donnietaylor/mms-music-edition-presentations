@@ -11,11 +11,10 @@ Notes and presentations for MMS Music 2025 Conference by Donnie Taylor.
 - **MMS 2025 Music City Edition**: [https://mms2025music.sched.com/](https://mms2025music.sched.com/)
 
 ### Upcoming MMS Conferences
-For the latest conference information, dates, and registration details, visit [mmsmoa.com](https://mmsmoa.com/).
-
-### Past MMS Conferences
 - **MMS Music City Edition 2025** - Nashville, TN - May 5-9, 2025
 - **MMS MOA 2025** - Minneapolis, MN - September 8-12, 2025
+
+For the latest conference information, dates, and registration details, visit [mmsmoa.com](https://mmsmoa.com/).
 
 ## Conference Sessions
 
